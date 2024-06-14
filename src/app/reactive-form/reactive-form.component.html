@@ -1,0 +1,95 @@
+<h1 class="bg-dark text-light p-4">Student From (Reactive)</h1>
+
+<div class="main">
+    <div class="container">
+    <form class="row g-3 needs-validation" [formGroup]="userForm">
+    <div class="col-md-4">
+        <label class="form-label">First name</label>
+        <input type="text" class="form-control" formControlName="firstName">
+        <div class="text-danger" *ngIf="userForm.controls['firstName'].invalid && (isFormSubmitted || userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty)">
+            <span *ngIf="userForm.controls['firstName'].errors?.['required']">This Is Required</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Last name</label>
+        <input type="text" class="form-control" formControlName="lastName">
+        <div class="text-danger" *ngIf="userForm.controls['lastName'].invalid && (userForm.controls['lastName'].touched || userForm.controls['lastName'].dirty)">
+            <span *ngIf="userForm.controls['lastName'].errors?.['required']">This IS Required</span>
+            <span *ngIf="userForm.controls['lastName'].errors?.['minlength']">Min 4 Characters Required</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Email</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+            <input type="text" class="form-control" formControlName="userName">
+        </div>
+        <div class="text-danger" *ngIf="userForm.controls['userName'].invalid && (userForm.controls['userName'].touched || userForm.controls['userName'].dirty)">
+            <span *ngIf="userForm.controls['userName'].errors?.['required']">This IS Required</span>
+            <span *ngIf="userForm.controls['userName'].errors?.['email']">Email Is Not Proper</span>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">City</label>
+        <input type="text" class="form-control" formControlName="city">
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">State</label>
+        <select class="form-select" formControlName="state">
+            <option selected disabled value="">Choose...</option>
+            <option value="Gujrat">Gujrat</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Jammu">Jammu</option>
+            <option value="Goa">Goa</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Zip</label>
+        <input type="text" class="form-control" formControlName="zipcode">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Student ID</label>
+        <input type="number" class="form-control" formControlName="studentId">
+        <div class="text-danger" *ngIf="userForm.controls['studentId'].invalid && (userForm.controls['studentId'].touched || userForm.controls['studentId'].dirty)">
+            <span *ngIf="userForm.controls['studentId'].errors?.['required']">This IS Required</span>
+            <span *ngIf="userForm.controls['studentId'].errors?.['pattern']">Must be a number</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Grade</label>
+        <select class="form-select" formControlName="grade">
+            <option selected disabled value="">Choose...</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="F">F</option>
+        </select>
+        <div class="text-danger" *ngIf="userForm.controls['grade'].invalid && (userForm.controls['grade'].touched || userForm.controls['grade'].dirty)">
+            <span *ngIf="userForm.controls['grade'].errors?.['required']">This IS Required</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" formControlName="dob">
+        <div class="text-danger" *ngIf="userForm.controls['dob'].invalid && (userForm.controls['dob'].touched || userForm.controls['dob'].dirty)">
+            <span *ngIf="userForm.controls['dob'].errors?.['required']">This IS Required</span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="isAgree">
+            <label class="form-check-label">
+                Agree to terms and conditions
+            </label>
+            <div class="text-danger" *ngIf="userForm.controls['isAgree'].invalid && (userForm.controls['isAgree'].touched || userForm.controls['isAgree'].dirty)">
+                <span *ngIf="userForm.controls['isAgree'].errors?.['requiredTrue']">You must agree before submitting.</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid" (click)="onSubmit()">Submit form</button>
+    </div>
+</form></div></div>
+

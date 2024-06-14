@@ -1,0 +1,83 @@
+<h1 class="bg-dark text-light p-4">Student From (Template-driven)</h1>
+<div class="main container">
+<form class="row g-3 needs-validation" novalidate #userform="ngForm">
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">First name</label>
+      <input type="text" #firstname="ngModel" [(ngModel)]="userObj.firstName" name="firstName"  class="form-control" minlength="3" required>
+      <div class="text-danger" *ngIf="firstname.invalid && (firstname.touched || firstname.dirty) || isFormSubmited" > 
+        <span *ngIf="firstname.errors?.['required']">This Is Required</span>
+        <span *ngIf="firstname.errors?.['minlength']">Min 3 Charactors Needed</span> 
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Last name</label>
+      <input type="text" [(ngModel)]="userObj.lastName" name="lastName" class="form-control" id="validationCustom02"   minlength="5"   >
+      <!-- <div class="text-danger">
+        Please select a valid state.
+      </div> -->
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustomUsername" class="form-label">Email</label>
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+        <input type="text" #email="ngModel"[(ngModel)]="userObj.userName"  name="userName" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control"  required>
+      </div>
+      <div class="text-danger" *ngIf="email.invalid && (email.touched || email.dirty)">
+        <span *ngIf="email.errors?.['required']">Required</span>
+        <span *ngIf="email.errors?.['pattern']">Email Id is Not Proper</span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom03" class="form-label">City</label>
+      <input type="text" [(ngModel)]="userObj.city" name="city" class="form-control" id="validationCustom03"  > 
+      <!-- <div class="text-danger" >
+        Please provide a valid city.
+      </div> -->
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Student ID</label>
+      <input type="number"  #studentId="ngModel"[(ngModel)]="userObj.studentId" name="studentId"class="form-control" required>
+      <div class="text-danger" *ngIf="studentId.invalid && (studentId.touched || studentId.dirty)">
+          <span *ngIf="studentId.errors?.['required']">This IS Required</span> 
+          <span *ngIf="studentId.errors?.['pattern']">Must be a number</span>
+      </div>
+  </div>
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">State</label>
+      <select class="form-select" [(ngModel)]="userObj.state" name="state"  id="validationCustom04"  >
+        <option selected disabled value="">Choose...</option>
+         <option value="Gujrat">Gujrat</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Jammu">Jammu</option>
+        <option value="Goa">Goa</option>
+      </select>
+      <!-- <div class="text-danger">
+        Please select a valid state.
+      </div> -->
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Date of Birth</label>
+      <input type="date" class="form-control" #dob="ngModel"[(ngModel)]="userObj.dob" name="dob"class="form-control" required>
+      <div class="text-danger"*ngIf="dob.invalid && (dob.touched || dob.dirty)">
+          <span *ngIf="dob.errors?.['required']">This IS Required</span>
+      </div>
+  </div>
+    <div class="col-md-3">
+      <label for="validationCustom05" class="form-label">Zip</label>
+      <input type="text" [(ngModel)]="userObj.zipcode" name="zipcode"  class="form-control" id="validationCustom05"  >
+     
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" #isAggree="ngModel"[(ngModel)]="userObj.isAggree" name="isAggree"  type="checkbox" value="" id="invalidCheck" required >
+        <span *ngIf="isAggree.errors?.['required']">You must agree before submitting.</span>
+        
+      </div>
+    </div>
+    <div class="col-12">
+      <!-- {{!userform.form.valid}} -->
+      <button class="btn btn-primary" [disabled]="!userform.form.valid" type="button" (click)="onSubmit(userform)">Submit form</button>
+    </div>
+  </form>
+</div>
